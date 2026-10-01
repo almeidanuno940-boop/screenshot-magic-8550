@@ -1,6 +1,7 @@
 # NexaFlow
 
 Website da NexaFlow — Automation & Data Solutions.
+Vercel deployment identity refresh.
 
 **Website:** https://screenshot-magic-8550.lovable.app<br>
 **Projeto Lovable:** https://lovable.dev/projects/4e715852-9a17-41ba-a01f-9a8d2e856ed8
