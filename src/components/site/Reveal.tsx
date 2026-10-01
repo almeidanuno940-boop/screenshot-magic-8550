@@ -1,7 +1,15 @@
 import { useEffect, useRef, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
-export function Reveal({ children, className, delay = 0 }: { children: ReactNode; className?: string; delay?: number }) {
+export function Reveal({
+  children,
+  className,
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
@@ -25,7 +33,17 @@ export function Reveal({ children, className, delay = 0 }: { children: ReactNode
   );
 }
 
-export function SectionHead({ eyebrow, title, sub, center }: { eyebrow: string; title: string; sub?: string; center?: boolean }) {
+export function SectionHead({
+  eyebrow,
+  title,
+  sub,
+  center,
+}: {
+  eyebrow: string;
+  title: string;
+  sub?: string;
+  center?: boolean;
+}) {
   return (
     <Reveal className={cn("max-w-2xl", center && "mx-auto text-center")}>
       <p className="eyebrow">{eyebrow}</p>
@@ -35,10 +53,21 @@ export function SectionHead({ eyebrow, title, sub, center }: { eyebrow: string; 
   );
 }
 
-export function CtaLink({ href, children, variant = "primary", className }: { href: string; children: ReactNode; variant?: "primary" | "ghost" | "light"; className?: string }) {
+export function CtaLink({
+  href,
+  children,
+  variant = "primary",
+  className,
+}: {
+  href: string;
+  children: ReactNode;
+  variant?: "primary" | "ghost" | "light";
+  className?: string;
+}) {
   const styles = {
     primary: "bg-primary text-primary-foreground hover:bg-primary/90 shadow-soft",
-    ghost: "border border-border bg-card text-foreground hover:border-primary/40 hover:text-primary",
+    ghost:
+      "border border-border bg-card text-foreground hover:border-primary/40 hover:text-primary",
     light: "bg-ink-foreground text-ink hover:bg-ink-foreground/90",
   }[variant];
   return (

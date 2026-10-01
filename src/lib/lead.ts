@@ -12,7 +12,11 @@ export const leadSchema = z.object({
     .optional()
     .or(z.literal("")),
   servico: z.string().min(1, "Escolha um serviço."),
-  mensagem: z.string().trim().min(10, "Descreva brevemente o seu pedido (mín. 10 caracteres).").max(2000),
+  mensagem: z
+    .string()
+    .trim()
+    .min(10, "Descreva brevemente o seu pedido (mín. 10 caracteres).")
+    .max(2000),
 });
 
 export type Lead = z.infer<typeof leadSchema>;
@@ -22,11 +26,10 @@ export type Lead = z.infer<typeof leadSchema>;
  * Set VITE_MAKE_WEBHOOK_URL to send leads to a Make (or any) webhook.
  */
 export async function submitLead(lead: Lead): Promise<void> {
-  const url = import.meta.env['VITE_MAKE_WEBHOOK_URL'] as string | undefined;
+  const url = import.meta.env["VITE_MAKE_WEBHOOK_URL"] as string | undefined;
   const payload = { ...lead, origem: "website", enviadoEm: new Date().toISOString() };
   if (!url) {
-    await new Promise((r) => setTimeout(r, 700));
-    return;
+    throw new Error("O formulário ainda não está ligado a um serviço de envio.");
   }
   const res = await fetch(url, {
     method: "POST",

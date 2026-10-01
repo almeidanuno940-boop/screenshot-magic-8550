@@ -5,12 +5,26 @@ import { cn } from "@/lib/utils";
 
 export function Logo({ light }: { light?: boolean }) {
   return (
-    <a href="/#inicio" className="flex items-center gap-2.5" aria-label="Nuno Almeida — início">
-      <span className="grid size-8 place-items-center rounded-lg bg-primary font-mono text-sm font-semibold text-primary-foreground">NA</span>
+    <a href="/#inicio" className="flex items-center gap-2.5" aria-label="NexaFlow — início">
+      <span className="grid size-9 place-items-center rounded-xl bg-primary font-mono text-sm font-semibold tracking-tight text-primary-foreground">
+        NF
+      </span>
       <span className="leading-tight">
-        <span className={cn("block text-[15px] font-semibold", light ? "text-ink-foreground" : "text-foreground")}>Nuno Almeida</span>
-        <span className={cn("block font-mono text-[10px] uppercase tracking-[0.14em]", light ? "text-ink-foreground/60" : "text-muted-foreground")}>
-          Automation & Data Analytics
+        <span
+          className={cn(
+            "block text-[16px] font-semibold tracking-tight",
+            light ? "text-ink-foreground" : "text-foreground",
+          )}
+        >
+          NexaFlow
+        </span>
+        <span
+          className={cn(
+            "block text-[9px] uppercase tracking-[0.12em]",
+            light ? "text-ink-foreground/60" : "text-muted-foreground",
+          )}
+        >
+          Automation &amp; Data Solutions
         </span>
       </span>
     </a>
@@ -28,20 +42,29 @@ export function Header() {
   }, []);
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [open]);
 
   return (
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled || open ? "border-b border-border bg-background/85 backdrop-blur-xl" : "border-b border-transparent",
+        scrolled || open
+          ? "border-b border-border bg-background/85 backdrop-blur-xl"
+          : "border-b border-transparent",
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
         <Logo />
         <nav className="hidden items-center gap-6 lg:flex" aria-label="Principal">
           {NAV.map((n) => (
-            <a key={n.href} href={`/${n.href}`} className="text-sm text-muted-foreground transition-colors hover:text-foreground">
+            <a
+              key={n.href}
+              href={n.href.startsWith("#") ? `/${n.href}` : n.href}
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
               {n.label}
             </a>
           ))}
@@ -68,7 +91,7 @@ export function Header() {
             {NAV.map((n) => (
               <a
                 key={n.href}
-                href={`/${n.href}`}
+                href={n.href.startsWith("#") ? `/${n.href}` : n.href}
                 onClick={() => setOpen(false)}
                 className="border-b border-border py-4 text-lg font-medium"
               >

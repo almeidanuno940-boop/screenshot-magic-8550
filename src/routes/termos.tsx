@@ -4,9 +4,12 @@ import { LegalPage } from "@/components/site/LegalPage";
 export const Route = createFileRoute("/termos")({
   head: () => ({
     meta: [
-      { title: "Termos e Condições | Nuno Almeida" },
-      { name: "description", content: "Termos e Condições do website Nuno Almeida — Automation & Data Analytics." },
-      { property: "og:title", content: "Termos e Condições | Nuno Almeida" },
+      { title: "Termos e Condições | NexaFlow" },
+      {
+        name: "description",
+        content: "Termos e Condições do website NexaFlow — Automation & Data Solutions.",
+      },
+      { property: "og:title", content: "Termos e Condições | NexaFlow" },
       { property: "og:description", content: "Condições de utilização deste website." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -15,7 +18,10 @@ export const Route = createFileRoute("/termos")({
   }),
   component: () => (
     <LegalPage title="Termos e Condições">
-      <p>Os preços indicados no website são valores iniciais e não constituem proposta vinculativa. Cada projeto é orçamentado individualmente.</p>
+      <p>
+        Os preços indicados no website são valores iniciais e não constituem proposta vinculativa.
+        Cada projeto é orçamentado individualmente.
+      </p>
     </LegalPage>
   ),
 });
