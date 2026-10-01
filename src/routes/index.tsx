@@ -1,24 +1,61 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { Header } from "@/components/site/Header";
+import { Footer } from "@/components/site/Footer";
+import { About, Contact, Demo, Faq, FinalCta, Hero, HowItWorks, Pricing, Problem, Sectors, Services, Tools } from "@/components/site/Sections";
+import { CONTACT } from "@/content/site";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
+const TITLE = "Nuno Almeida | Automação, IA e Power BI para Empresas";
+const DESC = "Soluções de automação, inteligência artificial, Power BI e análise de dados para pequenas empresas em Portugal.";
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: "Nuno Almeida — Automation & Data Analytics",
+  description: DESC,
+  email: CONTACT.email,
+  telephone: "+351916626440",
+  areaServed: "PT",
+  knowsAbout: ["Automação de processos", "Automação de leads", "Inteligência artificial", "Power BI", "Análise de dados"],
+};
+
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: TITLE },
+      { name: "description", content: DESC },
+      { name: "keywords", content: "automação de processos, automação de leads, automação para empresas, Power BI, dashboards Power BI, inteligência artificial para empresas, análise de dados, Aveiro, Portugal" },
+      { property: "og:title", content: TITLE },
+      { property: "og:description", content: DESC },
+      { property: "og:type", content: "website" },
+      { property: "og:locale", content: "pt_PT" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESC },
+    ],
+    scripts: [{ type: "application/ld+json", children: JSON.stringify(jsonLd) }],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <Problem />
+        <Services />
+        <Sectors />
+        <Demo />
+        <HowItWorks />
+        <Tools />
+        <Pricing />
+        <About />
+        <Faq />
+        <Contact />
+        <FinalCta />
+      </main>
+      <Footer />
+    </>
   );
 }
