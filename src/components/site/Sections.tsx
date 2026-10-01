@@ -75,7 +75,7 @@ export function Problem() {
         <SectionHead eyebrow="O problema" title="Quanto tempo perde a sua empresa com tarefas que poderiam ser automáticas?" />
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {PROBLEMS.map((p, i) => {
-            const Icon = problemIcons[i];
+            const Icon = problemIcons[i] ?? Inbox;
             return (
               <Reveal key={p.title} delay={i * 80}>
                 <div className="h-full rounded-2xl border border-border bg-background p-6 transition-all duration-300 hover:-translate-y-1 hover:shadow-soft">
@@ -163,7 +163,7 @@ export function Sectors() {
         <SectionHead eyebrow="Soluções" title="Soluções adaptadas ao seu negócio" />
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {SECTORS.map((s, i) => {
-            const Icon = sectorIcons[i];
+            const Icon = sectorIcons[i] ?? Briefcase;
             return (
               <Reveal key={s.title} delay={(i % 3) * 80}>
                 <div className="h-full rounded-2xl border border-border bg-background p-6 transition-colors hover:border-primary/40">

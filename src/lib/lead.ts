@@ -22,7 +22,7 @@ export type Lead = z.infer<typeof leadSchema>;
  * Set VITE_MAKE_WEBHOOK_URL to send leads to a Make (or any) webhook.
  */
 export async function submitLead(lead: Lead): Promise<void> {
-  const url = import.meta.env.VITE_MAKE_WEBHOOK_URL as string | undefined;
+  const url = import.meta.env['VITE_MAKE_WEBHOOK_URL'] as string | undefined;
   const payload = { ...lead, origem: "website", enviadoEm: new Date().toISOString() };
   if (!url) {
     await new Promise((r) => setTimeout(r, 700));
